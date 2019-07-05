@@ -41,7 +41,7 @@ struct inherited_scope : public B
 };
 
 template<typename T>
-inherited_scope(T)->inherited_scope<std::decay_t<T>>;
+inherited_scope(T)->inherited_scope<T>;
 
 template<typename ...B>
 struct multiple_inherited_scope : public B...
@@ -59,7 +59,7 @@ struct multiple_inherited_scope : public B...
 };
 
 template<typename ...T>
-multiple_inherited_scope(T...)->multiple_inherited_scope<std::decay_t<T>...>;
+multiple_inherited_scope(T...)->multiple_inherited_scope<T...>;
 
 BIRD_NAMESPACE_END
 
