@@ -1,16 +1,20 @@
 #include <iostream>
-#define BIRD_ENABLE_NAMESPACE
 #include "Include/scope.hpp"
+
+struct foo
+{
+    foo() {};
+    foo(foo const&) {std::cout << "copy\n";};
+    foo(foo&&) {std::cout << "move\n";};
+    void hello () const
+    {
+        std::cout << "hello\n";
+    }
+};
 
 int main()
 {
-    
-    SCOPE( std::cout << "first\n" );
-    {
-        SCOPE( std::cout << "hey\n" );
-        SCOPE( std::cout << "hey2\n" );
-        SCOPE( std::cout << "hey3\n" );
-    }
-
+    SCOPE(std::cout << "end\n");
+    std::cout << "hello" << std::endl;
     return 0;
-}
+} 

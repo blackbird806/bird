@@ -4,8 +4,6 @@
 #include "macrosUtility.h"
 #include "birdConfig.hpp"
 
-BIRD_NAMESPACE_START
-
 // composed scope
 template <class Functor>
 struct scope
@@ -41,7 +39,7 @@ struct inherited_scope : public B
 };
 
 template<typename T>
-inherited_scope(T)->inherited_scope<T>;
+inherited_scope(T) -> inherited_scope<T>;
 
 template<typename ...B>
 struct multiple_inherited_scope : public B...
@@ -61,12 +59,6 @@ struct multiple_inherited_scope : public B...
 template<typename ...T>
 multiple_inherited_scope(T...)->multiple_inherited_scope<T...>;
 
-BIRD_NAMESPACE_END
-
 // utility macro
-#ifdef BIRD_ENABLE_NAMESPACE
-    #define SCOPE(...) ::bird::scope MAKE_UNIQUE(SCOPE__) {[&](){ __VA_ARGS__; }}
-#else
-    #define SCOPE(...) scope MAKE_UNIQUE(SCOPE__) {[&](){ __VA_ARGS__; }}
-#endif
+#define SCOPE(code) scope MAKE_UNIQUE(SCOPE__) {[&](){ code; }}
 
