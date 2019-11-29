@@ -60,5 +60,5 @@ template<typename ...T>
 multiple_inherited_scope(T...)->multiple_inherited_scope<T...>;
 
 // utility macro
-#define SCOPE(code) scope MAKE_UNIQUE(SCOPE__) {[&](){ code; }}
+#define SCOPE(code) scope MAKE_UNIQUE_NAME(SCOPE__) {[&](){ code; }}
 
